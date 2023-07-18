@@ -8,6 +8,7 @@ import AddTask from './components/AddTask';
 
 
 function App() {
+  const [showAddTasks, setShowAddTasks] = useState(false)
 
   const [tasks, setTasks] = useState(
     [
@@ -55,8 +56,8 @@ const toggleRemider = (id) => {
 
   return (
     <div className="container">
-      <Header title='Task dash'/>
-      <AddTask onAdd={addTask}/>
+<Header title="Task dash" onAdd={() => setShowAddTasks(!showAddTasks)} showAdd={showAddTasks}/>
+     {showAddTasks && <AddTask onAdd={addTask}/>}
         {tasks.length > 0 ? (<Tasks tasks={tasks} onDelete={deletTask} onToggle={toggleRemider} />  
         ) : (
         'Task dash has no task to display') }
