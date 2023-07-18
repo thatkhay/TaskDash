@@ -33,6 +33,12 @@ function App() {
       
 )
 
+const addTask = (task) => {
+ const id = Math.floor(Math.random() * 10000) + 1 
+ const newTask = { id, ...task }
+ setTasks([...tasks, newTask])
+}
+
 const deletTask = (id) => {
   console.log('delete', id);
   setTasks(tasks.filter((task) => task.id !== id))
@@ -50,7 +56,7 @@ const toggleRemider = (id) => {
   return (
     <div className="container">
       <Header title='Task dash'/>
-      <AddTask />
+      <AddTask onAdd={addTask}/>
         {tasks.length > 0 ? (<Tasks tasks={tasks} onDelete={deletTask} onToggle={toggleRemider} />  
         ) : (
         'Task dash has no task to display') }
